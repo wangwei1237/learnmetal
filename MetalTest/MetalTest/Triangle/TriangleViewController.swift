@@ -45,12 +45,18 @@ class TriangleViewController: UIViewController {
     }
     
     func initViewStyle() {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
         let navBarHeight   = self.navigationController?.navigationBar.bounds.size.height
-        let viewTranslateY = navBarHeight!
+        let viewTranslateY = navBarHeight! + statusBarHeight
         
+        var viewSize       = self.view.bounds.size
+        viewSize.height   -= viewTranslateY
         var viewOriginal   = self.view.frame.origin
         viewOriginal.y    += viewTranslateY
+        
+        self.view.bounds.size  = viewSize
         self.view.frame.origin = viewOriginal
+        self.view.frame.size   = viewSize
         
         self.title = "渲染三角形"
     }

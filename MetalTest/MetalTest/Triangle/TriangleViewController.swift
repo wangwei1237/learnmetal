@@ -33,7 +33,7 @@ class TriangleViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        self.title = "渲染三角形"
+        initViewStyle()
         initMTLDevice()
         initMTLLayer()
         initVertexBuffer()
@@ -42,6 +42,17 @@ class TriangleViewController: UIViewController {
         
         timer = CADisplayLink(target: self, selector: #selector(drawloop))
         timer.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
+    }
+    
+    func initViewStyle() {
+        let navBarHeight   = self.navigationController?.navigationBar.bounds.size.height
+        let viewTranslateY = navBarHeight!
+        
+        var viewOriginal   = self.view.frame.origin
+        viewOriginal.y    += viewTranslateY
+        self.view.frame.origin = viewOriginal
+        
+        self.title = "渲染三角形"
     }
     
     func initMTLDevice() {

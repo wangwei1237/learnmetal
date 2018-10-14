@@ -59,6 +59,8 @@ class TriangleViewController: UIViewController {
         self.view.frame.size   = viewSize
         
         self.title = "渲染三角形"
+        //self.navigationItem.leftBarButtonItem?.title = "返回"
+        self.view.backgroundColor = UIColor.white
     }
     
     func initMTLDevice() {
@@ -71,10 +73,9 @@ class TriangleViewController: UIViewController {
         self.metalLayer.device      = self.device
         self.metalLayer.pixelFormat = .bgra8Unorm
         metalLayer.framebufferOnly  = true
-        metalLayer.frame            = view.layer.frame
+        metalLayer.frame            = self.view.layer.frame
         
         var drawableSize        = self.view.bounds.size
-        drawableSize.height    -= UIApplication.shared.statusBarFrame.size.height
         drawableSize.width     *= self.view.contentScaleFactor
         drawableSize.height    *= self.view.contentScaleFactor
         metalLayer.drawableSize = drawableSize

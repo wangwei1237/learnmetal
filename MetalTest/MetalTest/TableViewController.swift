@@ -108,6 +108,11 @@ class TableViewController: UITableViewController {
         let vcl = NSClassFromString(clsName! + "." + tm.className) as! UIViewController.Type
         let vc = vcl.init()
         
+        // 在push前修改返回按钮的文本。
+        let backItem: UIBarButtonItem = UIBarButtonItem()
+        backItem.title = ""
+        self.navigationItem.backBarButtonItem = backItem
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

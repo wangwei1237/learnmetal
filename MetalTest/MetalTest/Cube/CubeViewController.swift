@@ -23,25 +23,25 @@ class CubeViewController: UIViewController {
     var timer: CADisplayLink!                  = nil
     
     let vertexData: [Float] = [
-        -0.5, -0.5, -0.5, 1.0, 1.0, 0.0, 0.0, 1.0,
-         0.5, -0.5, -0.5, 1.0, 0.0, 1.0, 0.0, 1.0,
-         0.5, -0.5,  0.5, 1.0, 0.0, 0.0, 1.0, 1.0,
-        -0.5, -0.5,  0.5, 1.0, 0.0, 1.0, 0.0, 1.0,
+        -1.0, -1.0, -1.0, 1.0, 1.0, 0.0, 0.0, 1.0,
+         1.0, -1.0, -1.0, 1.0, 0.0, 1.0, 0.0, 1.0,
+         1.0, -1.0,  1.0, 1.0, 0.0, 0.0, 1.0, 1.0,
+        -1.0, -1.0,  1.0, 1.0, 0.0, 1.0, 0.0, 1.0,
         
-        -0.5,  0.5, -0.5, 1.0, 0.0, 1.0, 0.0, 1.0,
-         0.5,  0.5, -0.5, 1.0, 0.0, 0.0, 1.0, 1.0,
-         0.5,  0.5,  0.5, 1.0, 1.0, 0.0, 0.0, 1.0,
-        -0.5,  0.5,  0.5, 1.0, 0.0, 0.0, 1.0, 1.0,
+        -1.0,  1.0, -1.0, 1.0, 0.0, 1.0, 0.0, 1.0,
+         1.0,  1.0, -1.0, 1.0, 0.0, 0.0, 1.0, 1.0,
+         1.0,  1.0,  1.0, 1.0, 1.0, 0.0, 0.0, 1.0,
+        -1.0,  1.0,  1.0, 1.0, 0.0, 0.0, 1.0, 1.0,
         ]
     //]]
     
     let indexData: [UInt16] = [
-        0, 1, 2, 2, 3, 0,    //下
-        4, 5, 6, 6, 7, 4,    //上
-        0, 3, 7, 7, 4, 0,    //左
-        1, 2, 6, 6, 5, 1,    //右
         2, 3, 7, 7, 6, 2,    //前
-        0, 4, 5, 4, 5, 1,    //后
+        1, 2, 6, 6, 5, 1,    //右
+        4, 5, 6, 6, 7, 4,    //上
+        0, 3, 2, 2, 1, 0,    //下
+        0, 4, 7, 7, 3, 0,    //左
+        0, 1, 5, 5, 4, 0,    //后
     ]
     
     var rotation : Float = 1.0
@@ -149,10 +149,12 @@ class CubeViewController: UIViewController {
         // 创建一个command encoder，并指定你之前创建的pipeline和顶点
         let renderEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDesciptor)
         renderEncoder?.setRenderPipelineState(pipelineState)
+        renderEncoder?.setFrontFacing(.clockwise)
+        renderEncoder?.setCullMode(.back)
         setUniforms()
         renderEncoder?.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         renderEncoder?.setVertexBuffer(uniformBuffer, offset: 0, index: 1)
-        //renderEncoder?.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3, instanceCount: 1)
+        
         renderEncoder?.drawIndexedPrimitives(type: .triangle, indexCount: indexBuffer.length / MemoryLayout<UInt16>.size, indexType: .uint16, indexBuffer: indexBuffer, indexBufferOffset: 0)
         
         renderEncoder?.endEncoding()
@@ -162,17 +164,17 @@ class CubeViewController: UIViewController {
     }
     
     func setUniforms() {
-        let cameraPosition = vector_float3(0, 0, -1.0)
+        let cameraPosition = vector_float3(0, 0, -3)
         
         let scaled = scalingMatrix(scale: 0.5)
         rotation += 1 / 100 * Float.pi / 4
         let rotatedY = rotationMatrix(angle: rotation, axis: float3(0, 1, 0))
-        let rotatedX = rotationMatrix(angle: Float.pi / 4, axis: float3(1, 0, 0))
+        let rotatedX = rotationMatrix(angle: Float.pi / 6, axis: float3(1, 0, 0))
         let modelMatrix = matrix_multiply(matrix_multiply(rotatedX, rotatedY), scaled)
         
         let viewMatrix = translationMatrix(position: cameraPosition)
-        
-        let projMatrix = projectionMatrix(near: 0, far: 10, aspect: 1, fovy: 1)
+        let aspect = self.metalLayer.drawableSize.width / metalLayer.drawableSize.height
+        let projMatrix = projectionMatrix(near: 1.0, far: 100, aspect: Float(aspect), fovy: 1)
         let modelViewProjectionMatrix = matrix_multiply(projMatrix, matrix_multiply(viewMatrix, modelMatrix))
         
         let bufferPointer = uniformBuffer.contents()

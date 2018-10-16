@@ -120,7 +120,7 @@ class TableViewController: UITableViewController {
         var task:TaskModel = TaskModel("渲染三角形", "TriangleViewController")
         self.tasks.append(task)
         
-        task = TaskModel("test2", "TriangleViewController")
+        task = TaskModel("彩色三角形",  "ColorTriangleViewController")
         self.tasks.append(task)
         
         task = TaskModel("test3", "TriangleViewController")

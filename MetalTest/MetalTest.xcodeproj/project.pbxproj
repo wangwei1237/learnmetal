@@ -20,6 +20,8 @@
 		4A611920216F4FC200A2C194 /* TriangleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61191F216F4FC200A2C194 /* TriangleViewController.swift */; };
 		4A611923216F501000A2C194 /* FragmentShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A611921216F501000A2C194 /* FragmentShader.metal */; };
 		4A611924216F501000A2C194 /* VertexShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A611922216F501000A2C194 /* VertexShader.metal */; };
+		4A70857D2174CDDD00F7E8F7 /* ColorTriangleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70857C2174CDDD00F7E8F7 /* ColorTriangleViewController.swift */; };
+		4A70857F2174CE3800F7E8F7 /* ColorTriangleShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A70857E2174CE3800F7E8F7 /* ColorTriangleShader.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		4A61191F216F4FC200A2C194 /* TriangleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleViewController.swift; sourceTree = "<group>"; };
 		4A611921216F501000A2C194 /* FragmentShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = FragmentShader.metal; sourceTree = "<group>"; };
 		4A611922216F501000A2C194 /* VertexShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = VertexShader.metal; sourceTree = "<group>"; };
+		4A70857C2174CDDD00F7E8F7 /* ColorTriangleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTriangleViewController.swift; sourceTree = "<group>"; };
+		4A70857E2174CE3800F7E8F7 /* ColorTriangleShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ColorTriangleShader.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		4A6118E6216F145700A2C194 /* MetalTest */ = {
 			isa = PBXGroup;
 			children = (
+				4A70857B2174CD6100F7E8F7 /* ColorTriangle */,
 				4A61191E216F4FC200A2C194 /* Triangle */,
 				4A611919216F29E200A2C194 /* Model */,
 				4A6118E7216F145700A2C194 /* AppDelegate.swift */,
@@ -157,6 +162,15 @@
 				4A61191F216F4FC200A2C194 /* TriangleViewController.swift */,
 			);
 			path = Triangle;
+			sourceTree = "<group>";
+		};
+		4A70857B2174CD6100F7E8F7 /* ColorTriangle */ = {
+			isa = PBXGroup;
+			children = (
+				4A70857C2174CDDD00F7E8F7 /* ColorTriangleViewController.swift */,
+				4A70857E2174CE3800F7E8F7 /* ColorTriangleShader.metal */,
+			);
+			path = ColorTriangle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,7 +308,9 @@
 				4A6118EA216F145700A2C194 /* ViewController.swift in Sources */,
 				4A611923216F501000A2C194 /* FragmentShader.metal in Sources */,
 				4A611916216F154100A2C194 /* NavigationController.swift in Sources */,
+				4A70857F2174CE3800F7E8F7 /* ColorTriangleShader.metal in Sources */,
 				4A611920216F4FC200A2C194 /* TriangleViewController.swift in Sources */,
+				4A70857D2174CDDD00F7E8F7 /* ColorTriangleViewController.swift in Sources */,
 				4A61191B216F2A0000A2C194 /* TaskModel.swift in Sources */,
 				4A6118E8216F145700A2C194 /* AppDelegate.swift in Sources */,
 				4A611918216F167100A2C194 /* TableViewController.swift in Sources */,

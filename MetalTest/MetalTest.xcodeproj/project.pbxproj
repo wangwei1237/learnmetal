@@ -22,6 +22,9 @@
 		4A611924216F501000A2C194 /* VertexShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A611922216F501000A2C194 /* VertexShader.metal */; };
 		4A70857D2174CDDD00F7E8F7 /* ColorTriangleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70857C2174CDDD00F7E8F7 /* ColorTriangleViewController.swift */; };
 		4A70857F2174CE3800F7E8F7 /* ColorTriangleShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A70857E2174CE3800F7E8F7 /* ColorTriangleShader.metal */; };
+		4A70858321759A7600F7E8F7 /* CubeShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858121759A7600F7E8F7 /* CubeShader.metal */; };
+		4A70858421759A7600F7E8F7 /* CubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858221759A7600F7E8F7 /* CubeViewController.swift */; };
+		4A7085872175B9E900F7E8F7 /* MatrixOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085862175B9E900F7E8F7 /* MatrixOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		4A611922216F501000A2C194 /* VertexShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = VertexShader.metal; sourceTree = "<group>"; };
 		4A70857C2174CDDD00F7E8F7 /* ColorTriangleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTriangleViewController.swift; sourceTree = "<group>"; };
 		4A70857E2174CE3800F7E8F7 /* ColorTriangleShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ColorTriangleShader.metal; sourceTree = "<group>"; };
+		4A70858121759A7600F7E8F7 /* CubeShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = CubeShader.metal; sourceTree = "<group>"; };
+		4A70858221759A7600F7E8F7 /* CubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeViewController.swift; sourceTree = "<group>"; };
+		4A7085862175B9E900F7E8F7 /* MatrixOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,8 @@
 		4A6118E6216F145700A2C194 /* MetalTest */ = {
 			isa = PBXGroup;
 			children = (
+				4A7085852175B8CB00F7E8F7 /* Utils */,
+				4A70858021759A2100F7E8F7 /* Cube */,
 				4A70857B2174CD6100F7E8F7 /* ColorTriangle */,
 				4A61191E216F4FC200A2C194 /* Triangle */,
 				4A611919216F29E200A2C194 /* Model */,
@@ -171,6 +179,23 @@
 				4A70857E2174CE3800F7E8F7 /* ColorTriangleShader.metal */,
 			);
 			path = ColorTriangle;
+			sourceTree = "<group>";
+		};
+		4A70858021759A2100F7E8F7 /* Cube */ = {
+			isa = PBXGroup;
+			children = (
+				4A70858121759A7600F7E8F7 /* CubeShader.metal */,
+				4A70858221759A7600F7E8F7 /* CubeViewController.swift */,
+			);
+			path = Cube;
+			sourceTree = "<group>";
+		};
+		4A7085852175B8CB00F7E8F7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4A7085862175B9E900F7E8F7 /* MatrixOperation.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,10 +329,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A7085872175B9E900F7E8F7 /* MatrixOperation.swift in Sources */,
 				4A611924216F501000A2C194 /* VertexShader.metal in Sources */,
 				4A6118EA216F145700A2C194 /* ViewController.swift in Sources */,
+				4A70858321759A7600F7E8F7 /* CubeShader.metal in Sources */,
 				4A611923216F501000A2C194 /* FragmentShader.metal in Sources */,
 				4A611916216F154100A2C194 /* NavigationController.swift in Sources */,
+				4A70858421759A7600F7E8F7 /* CubeViewController.swift in Sources */,
 				4A70857F2174CE3800F7E8F7 /* ColorTriangleShader.metal in Sources */,
 				4A611920216F4FC200A2C194 /* TriangleViewController.swift in Sources */,
 				4A70857D2174CDDD00F7E8F7 /* ColorTriangleViewController.swift in Sources */,

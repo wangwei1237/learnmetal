@@ -123,7 +123,7 @@ class TableViewController: UITableViewController {
         task = TaskModel("彩色三角形",  "ColorTriangleViewController")
         self.tasks.append(task)
         
-        task = TaskModel("test3", "TriangleViewController")
+        task = TaskModel("渲染立方体", "CubeViewController")
         self.tasks.append(task)
     }
 

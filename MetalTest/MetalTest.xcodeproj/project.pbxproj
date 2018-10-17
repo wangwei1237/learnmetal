@@ -25,6 +25,8 @@
 		4A70858321759A7600F7E8F7 /* CubeShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858121759A7600F7E8F7 /* CubeShader.metal */; };
 		4A70858421759A7600F7E8F7 /* CubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858221759A7600F7E8F7 /* CubeViewController.swift */; };
 		4A7085872175B9E900F7E8F7 /* MatrixOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085862175B9E900F7E8F7 /* MatrixOperation.swift */; };
+		4A70858B2177542C00F7E8F7 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085892177542B00F7E8F7 /* CSViewController.swift */; };
+		4A70858C2177542C00F7E8F7 /* ComputerShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858A2177542C00F7E8F7 /* ComputerShader.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		4A70858121759A7600F7E8F7 /* CubeShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = CubeShader.metal; sourceTree = "<group>"; };
 		4A70858221759A7600F7E8F7 /* CubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeViewController.swift; sourceTree = "<group>"; };
 		4A7085862175B9E900F7E8F7 /* MatrixOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixOperation.swift; sourceTree = "<group>"; };
+		4A7085892177542B00F7E8F7 /* CSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
+		4A70858A2177542C00F7E8F7 /* ComputerShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = ComputerShader.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,19 +123,20 @@
 		4A6118E6216F145700A2C194 /* MetalTest */ = {
 			isa = PBXGroup;
 			children = (
-				4A7085852175B8CB00F7E8F7 /* Utils */,
-				4A70858021759A2100F7E8F7 /* Cube */,
-				4A70857B2174CD6100F7E8F7 /* ColorTriangle */,
-				4A61191E216F4FC200A2C194 /* Triangle */,
-				4A611919216F29E200A2C194 /* Model */,
 				4A6118E7216F145700A2C194 /* AppDelegate.swift */,
-				4A6118E9216F145700A2C194 /* ViewController.swift */,
-				4A6118EB216F145700A2C194 /* Main.storyboard */,
 				4A6118EE216F145800A2C194 /* Assets.xcassets */,
-				4A6118F0216F145800A2C194 /* LaunchScreen.storyboard */,
+				4A70857B2174CD6100F7E8F7 /* ColorTriangle */,
+				4A7085882177542B00F7E8F7 /* ComputerShader */,
+				4A70858021759A2100F7E8F7 /* Cube */,
 				4A6118F3216F145800A2C194 /* Info.plist */,
+				4A6118F0216F145800A2C194 /* LaunchScreen.storyboard */,
+				4A6118EB216F145700A2C194 /* Main.storyboard */,
+				4A611919216F29E200A2C194 /* Model */,
 				4A611915216F154100A2C194 /* NavigationController.swift */,
 				4A611917216F167100A2C194 /* TableViewController.swift */,
+				4A61191E216F4FC200A2C194 /* Triangle */,
+				4A7085852175B8CB00F7E8F7 /* Utils */,
+				4A6118E9216F145700A2C194 /* ViewController.swift */,
 			);
 			path = MetalTest;
 			sourceTree = "<group>";
@@ -196,6 +201,15 @@
 				4A7085862175B9E900F7E8F7 /* MatrixOperation.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4A7085882177542B00F7E8F7 /* ComputerShader */ = {
+			isa = PBXGroup;
+			children = (
+				4A70858A2177542C00F7E8F7 /* ComputerShader.metal */,
+				4A7085892177542B00F7E8F7 /* CSViewController.swift */,
+			);
+			path = ComputerShader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,8 +349,10 @@
 				4A70858321759A7600F7E8F7 /* CubeShader.metal in Sources */,
 				4A611923216F501000A2C194 /* FragmentShader.metal in Sources */,
 				4A611916216F154100A2C194 /* NavigationController.swift in Sources */,
+				4A70858C2177542C00F7E8F7 /* ComputerShader.metal in Sources */,
 				4A70858421759A7600F7E8F7 /* CubeViewController.swift in Sources */,
 				4A70857F2174CE3800F7E8F7 /* ColorTriangleShader.metal in Sources */,
+				4A70858B2177542C00F7E8F7 /* CSViewController.swift in Sources */,
 				4A611920216F4FC200A2C194 /* TriangleViewController.swift in Sources */,
 				4A70857D2174CDDD00F7E8F7 /* ColorTriangleViewController.swift in Sources */,
 				4A61191B216F2A0000A2C194 /* TaskModel.swift in Sources */,

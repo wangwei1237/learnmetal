@@ -117,14 +117,19 @@ class TableViewController: UITableViewController {
     }
     
     func initTasks() {
-        var task:TaskModel = TaskModel("渲染三角形", "TriangleViewController")
-        self.tasks.append(task)
+        var task: TaskModel?
         
-        task = TaskModel("彩色三角形",  "ColorTriangleViewController")
-        self.tasks.append(task)
+        let taskDict: [String:String] = [
+            "渲染三角形": "TriangleViewController",
+            "彩色三角形": "ColorTriangleViewController",
+            "渲染立方体": "CubeViewController",
+            "计算着色器": "CSViewController",
+        ]
         
-        task = TaskModel("渲染立方体", "CubeViewController")
-        self.tasks.append(task)
+        for (key, value) in taskDict {
+            task = TaskModel(key, value)
+            self.tasks.append(task!)
+        }
     }
 
 }

@@ -24,7 +24,7 @@ kernel void cp_compute(texture2d<float, access::write> output [[texture(0)]],
         z = cc + float2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y);
         dmin=min(dmin, float4(abs(0.0 + z.y + 0.5 * sin(z.x)), abs(1.0 + z.x + 0.5 * sin(z.y)), dot(z, z), length(fract(z) - 0.5)));
     }
-    float3 color = float3(dmin.w);
+    float3 color = float3(tp.x/width - tp.y/height);
     color = mix(color, float3(1.00, 0.80, 0.60), min(1.0, pow(dmin.x * 0.25, 0.20)));
     color = mix(color, float3(0.72, 0.70, 0.60), min(1.0, pow(dmin.y * 0.50, 0.50)));
     color = mix(color, float3(1.00, 1.00, 1.00), 1.0 - min(1.0, pow(dmin.z * 1.00, 0.15)));

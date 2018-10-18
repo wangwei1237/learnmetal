@@ -29,6 +29,8 @@
 		4A70858C2177542C00F7E8F7 /* ComputerShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858A2177542C00F7E8F7 /* ComputerShader.metal */; };
 		4A70859021782EBE00F7E8F7 /* ComputerPicture.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858E21782EBE00F7E8F7 /* ComputerPicture.metal */; };
 		4A70859121782EBE00F7E8F7 /* ComputerPictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858F21782EBE00F7E8F7 /* ComputerPictureController.swift */; };
+		4A7085952178A2D700F7E8F7 /* Light.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085932178A2D700F7E8F7 /* Light.metal */; };
+		4A7085962178A2D700F7E8F7 /* LightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085942178A2D700F7E8F7 /* LightController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		4A70858A2177542C00F7E8F7 /* ComputerShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = ComputerShader.metal; sourceTree = "<group>"; };
 		4A70858E21782EBE00F7E8F7 /* ComputerPicture.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = ComputerPicture.metal; sourceTree = "<group>"; };
 		4A70858F21782EBE00F7E8F7 /* ComputerPictureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputerPictureController.swift; sourceTree = "<group>"; };
+		4A7085932178A2D700F7E8F7 /* Light.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Light.metal; sourceTree = "<group>"; };
+		4A7085942178A2D700F7E8F7 /* LightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 				4A70858021759A2100F7E8F7 /* Cube */,
 				4A6118F3216F145800A2C194 /* Info.plist */,
 				4A6118F0216F145800A2C194 /* LaunchScreen.storyboard */,
+				4A7085922178A27000F7E8F7 /* Light */,
 				4A6118EB216F145700A2C194 /* Main.storyboard */,
 				4A611919216F29E200A2C194 /* Model */,
 				4A611915216F154100A2C194 /* NavigationController.swift */,
@@ -224,6 +229,15 @@
 				4A70858F21782EBE00F7E8F7 /* ComputerPictureController.swift */,
 			);
 			path = ComputerPicture;
+			sourceTree = "<group>";
+		};
+		4A7085922178A27000F7E8F7 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				4A7085932178A2D700F7E8F7 /* Light.metal */,
+				4A7085942178A2D700F7E8F7 /* LightController.swift */,
+			);
+			path = Light;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,10 +379,12 @@
 				4A611923216F501000A2C194 /* FragmentShader.metal in Sources */,
 				4A611916216F154100A2C194 /* NavigationController.swift in Sources */,
 				4A70858C2177542C00F7E8F7 /* ComputerShader.metal in Sources */,
+				4A7085962178A2D700F7E8F7 /* LightController.swift in Sources */,
 				4A70858421759A7600F7E8F7 /* CubeViewController.swift in Sources */,
 				4A70857F2174CE3800F7E8F7 /* ColorTriangleShader.metal in Sources */,
 				4A70858B2177542C00F7E8F7 /* CSViewController.swift in Sources */,
 				4A611920216F4FC200A2C194 /* TriangleViewController.swift in Sources */,
+				4A7085952178A2D700F7E8F7 /* Light.metal in Sources */,
 				4A70857D2174CDDD00F7E8F7 /* ColorTriangleViewController.swift in Sources */,
 				4A61191B216F2A0000A2C194 /* TaskModel.swift in Sources */,
 				4A70859121782EBE00F7E8F7 /* ComputerPictureController.swift in Sources */,

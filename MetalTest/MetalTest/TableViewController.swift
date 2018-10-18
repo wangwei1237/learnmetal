@@ -112,9 +112,6 @@ class TableViewController: UITableViewController {
         let vcl = NSClassFromString(clsName! + "." + tm.className) as! UIViewController.Type
         let vc = vcl.init()
         
-        // 在push前修改返回按钮的文本。
-        
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -127,6 +124,7 @@ class TableViewController: UITableViewController {
             "渲染立方体": "CubeViewController",
             "计算着色器": "CSViewController",
             "渲染动图": "ComputerPictureController",
+            "光照渲染": "LightController",
         ]
         
         let taskArray: [String] = [
@@ -135,6 +133,7 @@ class TableViewController: UITableViewController {
             "渲染立方体",
             "计算着色器",
             "渲染动图",
+            "光照渲染",
         ]
         
         for item in taskArray {

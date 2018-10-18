@@ -11,7 +11,7 @@ import Metal
 import QuartzCore
 import simd
 
-class ComputerPictureController: UIViewController {
+class LightController: UIViewController {
     //[[ properties
     var device: MTLDevice!                      = nil
     var metalLayer: CAMetalLayer!               = nil
@@ -84,7 +84,7 @@ class ComputerPictureController: UIViewController {
     
     func initPipelineState() {
         let defaultLibrary = self.device.makeDefaultLibrary()
-        let computeFunc     = defaultLibrary?.makeFunction(name: "cp_compute")
+        let computeFunc     = defaultLibrary?.makeFunction(name: "l_compute")
         do {
             try self.pipelineState = self.device.makeComputePipelineState(function: computeFunc!)
         } catch let e{

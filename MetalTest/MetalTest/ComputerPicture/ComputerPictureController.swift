@@ -11,13 +11,15 @@ import Metal
 import QuartzCore
 import simd
 
-class CSViewController: UIViewController {
+class ComputerPictureController: UIViewController {
     //[[ properties
     var device: MTLDevice!                      = nil
     var metalLayer: CAMetalLayer!               = nil
     var pipelineState: MTLComputePipelineState! = nil
     var commandQueue: MTLCommandQueue!          = nil
     var timer: CADisplayLink!                   = nil
+    var t: Float                                = 0
+    var tBuffer: MTLBuffer!                     = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,7 @@ class CSViewController: UIViewController {
         initViewStyle()
         initMTLDevice()
         initMTLLayer()
+        initMTLBuffer()
         initPipelineState()
         initCommandQueue()
         
@@ -47,7 +50,7 @@ class CSViewController: UIViewController {
         self.view.frame.origin = viewOriginal
         self.view.frame.size   = viewSize
         
-        self.title = "计算着色器"
+        self.title = "渲染动图"
         self.view.backgroundColor = UIColor.white
     }
     
@@ -71,10 +74,13 @@ class CSViewController: UIViewController {
         self.view.layer.addSublayer(metalLayer)
     }
     
+    func initMTLBuffer() {
+        self.tBuffer = self.device.makeBuffer(length: MemoryLayout<Float>.size, options: [])
+    }
     
     func initPipelineState() {
         let defaultLibrary = self.device.makeDefaultLibrary()
-        let computeFunc     = defaultLibrary?.makeFunction(name: "cs_compute")
+        let computeFunc     = defaultLibrary?.makeFunction(name: "cp_compute")
         do {
             try self.pipelineState = self.device.makeComputePipelineState(function: computeFunc!)
         } catch let e{
@@ -92,12 +98,17 @@ class CSViewController: UIViewController {
     
     func render() {
         // metal layer上调用nextDrawable() ，它会返回你需要绘制到屏幕上的纹理(texture)
+        self.t += 0.01
+        let bufferPoint = self.tBuffer.contents()
+        memcpy(bufferPoint, &self.t, MemoryLayout<Float>.size)
+        
         let drawable = self.metalLayer.nextDrawable()
         let commandBuffer = self.commandQueue.makeCommandBuffer()
         let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
         
         commandEncoder?.setComputePipelineState(self.pipelineState)
         commandEncoder?.setTexture(drawable!.texture, index: 0)
+        commandEncoder?.setBuffer(self.tBuffer, offset: 0, index: 1)
         
         let threadGroupSize = MTLSizeMake(8, 8, 1)
         let threadGroups = MTLSizeMake(drawable!.texture.width / threadGroupSize.width, drawable!.texture.height / threadGroupSize.height, 1)

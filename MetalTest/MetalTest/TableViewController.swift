@@ -27,6 +27,10 @@ class TableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate   = self
         
+        let backItem: UIBarButtonItem = UIBarButtonItem()
+        backItem.title = ""
+        self.navigationItem.backBarButtonItem = backItem
+        
         // 注册newsCell
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "TaskTableViewCell")
     }
@@ -109,9 +113,7 @@ class TableViewController: UITableViewController {
         let vc = vcl.init()
         
         // 在push前修改返回按钮的文本。
-        let backItem: UIBarButtonItem = UIBarButtonItem()
-        backItem.title = ""
-        self.navigationItem.backBarButtonItem = backItem
+        
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -124,12 +126,20 @@ class TableViewController: UITableViewController {
             "彩色三角形": "ColorTriangleViewController",
             "渲染立方体": "CubeViewController",
             "计算着色器": "CSViewController",
+            "渲染动图": "ComputerPictureController",
         ]
         
-        for (key, value) in taskDict {
-            task = TaskModel(key, value)
+        let taskArray: [String] = [
+            "渲染三角形",
+            "彩色三角形",
+            "渲染立方体",
+            "计算着色器",
+            "渲染动图",
+        ]
+        
+        for item in taskArray {
+            task = TaskModel(item, taskDict[item]!)
             self.tasks.append(task!)
         }
     }
-
 }

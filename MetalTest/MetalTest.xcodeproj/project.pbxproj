@@ -27,6 +27,8 @@
 		4A7085872175B9E900F7E8F7 /* MatrixOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085862175B9E900F7E8F7 /* MatrixOperation.swift */; };
 		4A70858B2177542C00F7E8F7 /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085892177542B00F7E8F7 /* CSViewController.swift */; };
 		4A70858C2177542C00F7E8F7 /* ComputerShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858A2177542C00F7E8F7 /* ComputerShader.metal */; };
+		4A70859021782EBE00F7E8F7 /* ComputerPicture.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858E21782EBE00F7E8F7 /* ComputerPicture.metal */; };
+		4A70859121782EBE00F7E8F7 /* ComputerPictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858F21782EBE00F7E8F7 /* ComputerPictureController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		4A7085862175B9E900F7E8F7 /* MatrixOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixOperation.swift; sourceTree = "<group>"; };
 		4A7085892177542B00F7E8F7 /* CSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
 		4A70858A2177542C00F7E8F7 /* ComputerShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = ComputerShader.metal; sourceTree = "<group>"; };
+		4A70858E21782EBE00F7E8F7 /* ComputerPicture.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = ComputerPicture.metal; sourceTree = "<group>"; };
+		4A70858F21782EBE00F7E8F7 /* ComputerPictureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputerPictureController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 				4A6118E7216F145700A2C194 /* AppDelegate.swift */,
 				4A6118EE216F145800A2C194 /* Assets.xcassets */,
 				4A70857B2174CD6100F7E8F7 /* ColorTriangle */,
+				4A70858D21782E2B00F7E8F7 /* ComputerPicture */,
 				4A7085882177542B00F7E8F7 /* ComputerShader */,
 				4A70858021759A2100F7E8F7 /* Cube */,
 				4A6118F3216F145800A2C194 /* Info.plist */,
@@ -210,6 +215,15 @@
 				4A7085892177542B00F7E8F7 /* CSViewController.swift */,
 			);
 			path = ComputerShader;
+			sourceTree = "<group>";
+		};
+		4A70858D21782E2B00F7E8F7 /* ComputerPicture */ = {
+			isa = PBXGroup;
+			children = (
+				4A70858E21782EBE00F7E8F7 /* ComputerPicture.metal */,
+				4A70858F21782EBE00F7E8F7 /* ComputerPictureController.swift */,
+			);
+			path = ComputerPicture;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A7085872175B9E900F7E8F7 /* MatrixOperation.swift in Sources */,
+				4A70859021782EBE00F7E8F7 /* ComputerPicture.metal in Sources */,
 				4A611924216F501000A2C194 /* VertexShader.metal in Sources */,
 				4A6118EA216F145700A2C194 /* ViewController.swift in Sources */,
 				4A70858321759A7600F7E8F7 /* CubeShader.metal in Sources */,
@@ -356,6 +371,7 @@
 				4A611920216F4FC200A2C194 /* TriangleViewController.swift in Sources */,
 				4A70857D2174CDDD00F7E8F7 /* ColorTriangleViewController.swift in Sources */,
 				4A61191B216F2A0000A2C194 /* TaskModel.swift in Sources */,
+				4A70859121782EBE00F7E8F7 /* ComputerPictureController.swift in Sources */,
 				4A6118E8216F145700A2C194 /* AppDelegate.swift in Sources */,
 				4A611918216F167100A2C194 /* TableViewController.swift in Sources */,
 			);

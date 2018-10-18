@@ -11,6 +11,7 @@ using namespace metal;
 
 kernel void cp_compute(texture2d<float, access::write> output [[texture(0)]],
                        constant float &t [[buffer(1)]],
+                       constant float2 &tp [[buffer(2)]],
                        uint2 gid [[thread_position_in_grid]]) {
     int width  = output.get_width();
     int height = output.get_height();

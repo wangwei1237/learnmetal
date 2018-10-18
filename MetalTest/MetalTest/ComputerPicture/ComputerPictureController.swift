@@ -20,6 +20,8 @@ class ComputerPictureController: UIViewController {
     var timer: CADisplayLink!                   = nil
     var t: Float                                = 0
     var tBuffer: MTLBuffer!                     = nil
+    var tapPoint: float2!                       = nil
+    var tapPointBuffer: MTLBuffer!              = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +77,9 @@ class ComputerPictureController: UIViewController {
     }
     
     func initMTLBuffer() {
+        self.tapPoint = float2(0.0, 0.0)
         self.tBuffer = self.device.makeBuffer(length: MemoryLayout<Float>.size, options: [])
+        self.tapPointBuffer = self.device.makeBuffer(length: MemoryLayout<float2>.size, options: [])
     }
     
     func initPipelineState() {
@@ -101,6 +105,8 @@ class ComputerPictureController: UIViewController {
         self.t += 0.01
         let bufferPoint = self.tBuffer.contents()
         memcpy(bufferPoint, &self.t, MemoryLayout<Float>.size)
+        let tapBufferPoint = self.tapPointBuffer.contents()
+        memcpy(tapBufferPoint, &self.tapPoint, MemoryLayout<float2>.size)
         
         let drawable = self.metalLayer.nextDrawable()
         let commandBuffer = self.commandQueue.makeCommandBuffer()
@@ -109,6 +115,7 @@ class ComputerPictureController: UIViewController {
         commandEncoder?.setComputePipelineState(self.pipelineState)
         commandEncoder?.setTexture(drawable!.texture, index: 0)
         commandEncoder?.setBuffer(self.tBuffer, offset: 0, index: 1)
+        commandEncoder?.setBuffer(self.tapPointBuffer, offset: 0, index: 2)
         
         let threadGroupSize = MTLSizeMake(8, 8, 1)
         let threadGroups = MTLSizeMake(drawable!.texture.width / threadGroupSize.width, drawable!.texture.height / threadGroupSize.height, 1)
@@ -117,5 +124,24 @@ class ComputerPictureController: UIViewController {
         
         commandBuffer?.present(drawable!)
         commandBuffer?.commit()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let t: UITouch = touch as! UITouch
+            //当在屏幕上连续拍动两下时，背景恢复为白色
+            if(t.tapCount == 2) {
+                //self.view.backgroundColor = UIColor.white
+            } else if(t.tapCount == 1) { //当在屏幕上单击时，屏幕变为红色
+                //self.view.backgroundColor = UIColor.red
+            }
+            
+            var point = (touch as AnyObject).location(in: self.view)
+            
+            let scale = self.view.contentScaleFactor
+            point.x  *= scale
+            point.y  *= scale
+            self.tapPoint = float2(Float(point.x), Float(point.y))
+        }
     }
 }

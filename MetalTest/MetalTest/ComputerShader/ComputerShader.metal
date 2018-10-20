@@ -7,16 +7,8 @@
 //
 
 #include <metal_stdlib>
+#include "../Utils/Utils.h"
 using namespace metal;
-
-float distance(float2 point, float2 center, float radius) {
-    return length(point - center) - radius;
-}
-
-float smootherstep(float e1, float e2, float x) {
-    x = clamp((x - e1) / (e2 - e1), 0.0, 1.0);
-    return x * x * x * (x * (x * 6 - 15) + 10);
-}
 
 kernel void cs_compute(texture2d<float, access::write> output [[texture(0)]],
                        uint2 gid [[thread_position_in_grid]]) {
@@ -27,7 +19,6 @@ kernel void cs_compute(texture2d<float, access::write> output [[texture(0)]],
     float inside  = distance(float2(gid), center, radius);
     float denominator  = distance(float2(0, 0), center, radius);
     float distToCircle = inside / denominator;
-    float inside2 = distance(float2(gid), float2(center - float2(10, -10)), radius);
     
     // [[begin 边缘平滑处理，去锯齿
     float4 sun    = float4(1, 0.7, 0.0, 1) * (1 - distToCircle);

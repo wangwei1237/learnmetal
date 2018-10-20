@@ -31,6 +31,7 @@
 		4A70859121782EBE00F7E8F7 /* ComputerPictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70858F21782EBE00F7E8F7 /* ComputerPictureController.swift */; };
 		4A7085952178A2D700F7E8F7 /* Light.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085932178A2D700F7E8F7 /* Light.metal */; };
 		4A7085962178A2D700F7E8F7 /* LightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085942178A2D700F7E8F7 /* LightController.swift */; };
+		4A7085982179DC2800F7E8F7 /* Utils.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085972179DC2800F7E8F7 /* Utils.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		4A70858F21782EBE00F7E8F7 /* ComputerPictureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputerPictureController.swift; sourceTree = "<group>"; };
 		4A7085932178A2D700F7E8F7 /* Light.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Light.metal; sourceTree = "<group>"; };
 		4A7085942178A2D700F7E8F7 /* LightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightController.swift; sourceTree = "<group>"; };
+		4A7085972179DC2800F7E8F7 /* Utils.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Utils.metal; sourceTree = "<group>"; };
+		4A708599217A1EF300F7E8F7 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				4A7085862175B9E900F7E8F7 /* MatrixOperation.swift */,
+				4A7085972179DC2800F7E8F7 /* Utils.metal */,
+				4A708599217A1EF300F7E8F7 /* Utils.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				4A611916216F154100A2C194 /* NavigationController.swift in Sources */,
 				4A70858C2177542C00F7E8F7 /* ComputerShader.metal in Sources */,
 				4A7085962178A2D700F7E8F7 /* LightController.swift in Sources */,
+				4A7085982179DC2800F7E8F7 /* Utils.metal in Sources */,
 				4A70858421759A7600F7E8F7 /* CubeViewController.swift in Sources */,
 				4A70857F2174CE3800F7E8F7 /* ColorTriangleShader.metal in Sources */,
 				4A70858B2177542C00F7E8F7 /* CSViewController.swift in Sources */,
@@ -564,17 +570,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GR355R333;
 				INFOPLIST_FILE = MetalTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wangwei.MetalTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -582,17 +591,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GR355R333;
 				INFOPLIST_FILE = MetalTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wangwei.MetalTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

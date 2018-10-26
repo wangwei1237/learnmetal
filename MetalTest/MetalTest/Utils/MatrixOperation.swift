@@ -49,5 +49,6 @@ func projectionMatrix(near: Float, far: Float, aspect: Float, fovy: Float) -> ma
     let Y = vector_float4(0, scaleY, 0, 0)
     let Z = vector_float4(0, 0, scaleZ, -1)
     let W = vector_float4(0, 0, scaleW, 0)
+    
     return matrix_float4x4(columns:(X, Y, Z, W))
 }

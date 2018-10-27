@@ -28,6 +28,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var texture:MTLTexture!                      = nil
     var processQueue:DispatchQueue!              = nil
     
+    var isGray:Bool!                             = false
+    let button:UIButton!                         = UIButton(type: .system)
+    var isGrayBuffer: MTLBuffer!                 = nil
+    
     let vertexData:[Float] = [
         0.8,  0.8, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0,
         -0.8, -0.8, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0,0.0, 0.0,
@@ -47,8 +51,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         // Do any additional setup after loading the view, typically from a nib.
         initViewStyle()
+        
         initMTLDevice()
         initMTLLayer()
+        initControlButton()
         initVertexBuffer()
         initPipelineState()
         initCommandQueue()
@@ -82,6 +88,28 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.view.backgroundColor = UIColor.white
     }
     
+    func initControlButton() {
+        //let y2:Float = Float(self.view.bounds.height / 20.0 * 18.0)
+        let viewFrameOrigin = self.view.frame.origin
+        var buttonFrameOrigin = viewFrameOrigin
+        buttonFrameOrigin.y  = 520
+        buttonFrameOrigin.x  = 40
+        self.button.frame = CGRect(x: buttonFrameOrigin.x, y: buttonFrameOrigin.y, width: 100, height: 40)
+        self.button.setTitle("灰度", for: .normal);
+        self.button.backgroundColor = UIColor.blue;
+        self.button.addTarget(self, action:#selector(tapped(_:)), for:.touchUpInside)
+        self.view.addSubview(self.button)
+    }
+    
+    @objc func tapped(_ button:UIButton) {
+        self.isGray = !self.isGray;
+        if self.isGray {
+            self.button.setTitle("彩色", for: .normal)
+        } else {
+            self.button.setTitle("灰度", for: .normal)
+        }
+    }
+    
     func initMTLDevice() {
         self.device = MTLCreateSystemDefaultDevice()
     }
@@ -105,6 +133,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func initVertexBuffer() {
         let dataSize      = self.vertexData.count * MemoryLayout<Float>.size
         self.vertexBuffer = device.makeBuffer(bytes: vertexData, length: dataSize, options: MTLResourceOptions(rawValue: UInt(0)))
+        self.isGrayBuffer = device.makeBuffer(length: MemoryLayout<Bool>.size, options: [])
     }
     
     func initPipelineState() {
@@ -132,6 +161,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     func render() {
+        let bufferPoint = self.isGrayBuffer.contents()
+        memcpy(bufferPoint, &self.isGray, MemoryLayout<Bool>.size)
+        
         // metal layer上调用nextDrawable() ，它会返回你需要绘制到屏幕上的纹理(texture)
         let drawable = metalLayer.nextDrawable()
         
@@ -149,6 +181,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let renderEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDesciptor)
         renderEncoder?.setRenderPipelineState(pipelineState)
         renderEncoder?.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        renderEncoder?.setVertexBuffer(isGrayBuffer, offset: 0, index: 1)
         renderEncoder?.setFragmentTexture(self.texture, index: 0)
         renderEncoder?.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 6, instanceCount: 2)
         renderEncoder?.endEncoding()
@@ -182,7 +215,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.captureOutput.setSampleBufferDelegate(self, queue: self.processQueue)
         
         self.captureSession.beginConfiguration()
-        self.captureSession.sessionPreset = .vga640x480
+        self.captureSession.sessionPreset = .medium
         self.captureSession.commitConfiguration()
         
         let connection = self.captureOutput.connection(with: .video)
@@ -193,7 +226,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     func captureOutput(_: AVCaptureOutput, didOutput: CMSampleBuffer, from: AVCaptureConnection) {
         let localImg = self.getImageData(sampleBuffer: didOutput)
-        print("localImg info: \(String(describing: localImg?.size.width)),\(String(describing: localImg?.size.height))")
+        //print("localImg info: \(String(describing: localImg?.size.width)),\(String(describing: localImg?.size.height))")
         
         if localImg != nil {
             //self.metalLayer.drawableSize = localImg!.size

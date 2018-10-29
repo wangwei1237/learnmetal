@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4A0D1BED2181B3D9004FABB2 /* Camera.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D1BEB2181B3D9004FABB2 /* Camera.metal */; };
 		4A0D1BEE2181B3D9004FABB2 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D1BEC2181B3D9004FABB2 /* Camera.swift */; };
+		4A0D1BF22185A111004FABB2 /* CameraMPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D1BF02185A111004FABB2 /* CameraMPS.swift */; };
+		4A0D1BF32185A111004FABB2 /* CameraMPS.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D1BF12185A111004FABB2 /* CameraMPS.metal */; };
 		4A6118E8216F145700A2C194 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6118E7216F145700A2C194 /* AppDelegate.swift */; };
 		4A6118EA216F145700A2C194 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6118E9216F145700A2C194 /* ViewController.swift */; };
 		4A6118ED216F145700A2C194 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A6118EB216F145700A2C194 /* Main.storyboard */; };
@@ -56,6 +58,8 @@
 /* Begin PBXFileReference section */
 		4A0D1BEB2181B3D9004FABB2 /* Camera.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Camera.metal; sourceTree = "<group>"; };
 		4A0D1BEC2181B3D9004FABB2 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		4A0D1BF02185A111004FABB2 /* CameraMPS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraMPS.swift; sourceTree = "<group>"; };
+		4A0D1BF12185A111004FABB2 /* CameraMPS.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = CameraMPS.metal; sourceTree = "<group>"; };
 		4A6118E4216F145700A2C194 /* MetalTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A6118E7216F145700A2C194 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A6118E9216F145700A2C194 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,15 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		4A0D1BEF2185A05D004FABB2 /* CameraMPS */ = {
+			isa = PBXGroup;
+			children = (
+				4A0D1BF12185A111004FABB2 /* CameraMPS.metal */,
+				4A0D1BF02185A111004FABB2 /* CameraMPS.swift */,
+			);
+			path = CameraMPS;
+			sourceTree = "<group>";
+		};
 		4A6118DB216F145700A2C194 = {
 			isa = PBXGroup;
 			children = (
@@ -147,9 +160,10 @@
 		4A6118E6216F145700A2C194 /* MetalTest */ = {
 			isa = PBXGroup;
 			children = (
-				4A0D1BEA2181AC52004FABB2 /* Camera */,
+				4A0D1BEF2185A05D004FABB2 /* CameraMPS */,
 				4A6118E7216F145700A2C194 /* AppDelegate.swift */,
 				4A6118EE216F145800A2C194 /* Assets.xcassets */,
+				4A0D1BEA2181AC52004FABB2 /* Camera */,
 				4A70857B2174CD6100F7E8F7 /* ColorTriangle */,
 				4A70858D21782E2B00F7E8F7 /* ComputerPicture */,
 				4A7085882177542B00F7E8F7 /* ComputerShader */,
@@ -391,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A0D1BEE2181B3D9004FABB2 /* Camera.swift in Sources */,
+				4A0D1BF22185A111004FABB2 /* CameraMPS.swift in Sources */,
 				4A7085872175B9E900F7E8F7 /* MatrixOperation.swift in Sources */,
 				4A70859021782EBE00F7E8F7 /* ComputerPicture.metal in Sources */,
 				4A611924216F501000A2C194 /* VertexShader.metal in Sources */,
@@ -406,6 +421,7 @@
 				4A70857F2174CE3800F7E8F7 /* ColorTriangleShader.metal in Sources */,
 				4A70858B2177542C00F7E8F7 /* CSViewController.swift in Sources */,
 				4A611920216F4FC200A2C194 /* TriangleViewController.swift in Sources */,
+				4A0D1BF32185A111004FABB2 /* CameraMPS.metal in Sources */,
 				4A7085952178A2D700F7E8F7 /* Light.metal in Sources */,
 				4A70857D2174CDDD00F7E8F7 /* ColorTriangleViewController.swift in Sources */,
 				4A61191B216F2A0000A2C194 /* TaskModel.swift in Sources */,
@@ -588,14 +604,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5GR355R333;
+				DEVELOPMENT_TEAM = ZHU4HV4LVA;
 				INFOPLIST_FILE = MetalTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wangwei.MetalTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nini.MetalTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -609,14 +625,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5GR355R333;
+				DEVELOPMENT_TEAM = ZHU4HV4LVA;
 				INFOPLIST_FILE = MetalTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wangwei.MetalTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nini.MetalTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

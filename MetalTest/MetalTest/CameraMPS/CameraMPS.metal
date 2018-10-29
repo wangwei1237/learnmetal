@@ -10,7 +10,7 @@
 #include "../Utils/Utils.h"
 using namespace metal;
 
-vertex VertexOut ca_basic_vertex(constant VertexIn* vertex_array [[buffer(0)]],
+vertex VertexOut camps_basic_vertex(constant VertexIn* vertex_array [[buffer(0)]],
                                  unsigned int vid [[vertex_id]],
                                  constant bool &isGray [[buffer(1)]]) {
     VertexOut out;
@@ -22,7 +22,7 @@ vertex VertexOut ca_basic_vertex(constant VertexIn* vertex_array [[buffer(0)]],
     return out;
 }
 
-fragment float4 ca_basic_fragment(VertexOut vert [[stage_in]],
+fragment float4 camps_basic_fragment(VertexOut vert [[stage_in]],
                                   texture2d<float> colorTexture [[texture(0)]]) {
     
     constexpr sampler textureSampler (mag_filter::linear,

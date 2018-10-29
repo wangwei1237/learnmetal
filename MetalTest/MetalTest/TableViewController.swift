@@ -126,6 +126,7 @@ class TableViewController: UITableViewController {
             "渲染动图": "ComputerPictureController",
             "光照渲染": "LightController",
             "采集摄像头": "CameraViewController",
+            "采集摄像头2": "CameraMPSViewController",
         ]
         
         let taskArray: [String] = [
@@ -136,6 +137,7 @@ class TableViewController: UITableViewController {
             "渲染动图",
             "光照渲染",
             "采集摄像头",
+            "采集摄像头2",
         ]
         
         for item in taskArray {

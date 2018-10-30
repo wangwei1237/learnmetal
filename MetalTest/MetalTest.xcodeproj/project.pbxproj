@@ -36,6 +36,8 @@
 		4A7085952178A2D700F7E8F7 /* Light.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085932178A2D700F7E8F7 /* Light.metal */; };
 		4A7085962178A2D700F7E8F7 /* LightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085942178A2D700F7E8F7 /* LightController.swift */; };
 		4A7085982179DC2800F7E8F7 /* Utils.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4A7085972179DC2800F7E8F7 /* Utils.metal */; };
+		4AEFDC2C218728A000CEDAAC /* CameraCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEFDC2A218728A000CEDAAC /* CameraCS.swift */; };
+		4AEFDC2D218728A000CEDAAC /* CameraCS.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4AEFDC2B218728A000CEDAAC /* CameraCS.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		4A7085942178A2D700F7E8F7 /* LightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightController.swift; sourceTree = "<group>"; };
 		4A7085972179DC2800F7E8F7 /* Utils.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Utils.metal; sourceTree = "<group>"; };
 		4A708599217A1EF300F7E8F7 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		4AEFDC2A218728A000CEDAAC /* CameraCS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraCS.swift; sourceTree = "<group>"; };
+		4AEFDC2B218728A000CEDAAC /* CameraCS.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = CameraCS.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 		4A6118E6216F145700A2C194 /* MetalTest */ = {
 			isa = PBXGroup;
 			children = (
+				4AEFDC292187285D00CEDAAC /* CameraCS */,
 				4A0D1BEF2185A05D004FABB2 /* CameraMPS */,
 				4A6118E7216F145700A2C194 /* AppDelegate.swift */,
 				4A6118EE216F145800A2C194 /* Assets.xcassets */,
@@ -271,6 +276,15 @@
 				4A7085942178A2D700F7E8F7 /* LightController.swift */,
 			);
 			path = Light;
+			sourceTree = "<group>";
+		};
+		4AEFDC292187285D00CEDAAC /* CameraCS */ = {
+			isa = PBXGroup;
+			children = (
+				4AEFDC2B218728A000CEDAAC /* CameraCS.metal */,
+				4AEFDC2A218728A000CEDAAC /* CameraCS.swift */,
+			);
+			path = CameraCS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AEFDC2D218728A000CEDAAC /* CameraCS.metal in Sources */,
 				4A0D1BEE2181B3D9004FABB2 /* Camera.swift in Sources */,
 				4A0D1BF22185A111004FABB2 /* CameraMPS.swift in Sources */,
 				4A7085872175B9E900F7E8F7 /* MatrixOperation.swift in Sources */,
@@ -411,6 +426,7 @@
 				4A611924216F501000A2C194 /* VertexShader.metal in Sources */,
 				4A0D1BED2181B3D9004FABB2 /* Camera.metal in Sources */,
 				4A6118EA216F145700A2C194 /* ViewController.swift in Sources */,
+				4AEFDC2C218728A000CEDAAC /* CameraCS.swift in Sources */,
 				4A70858321759A7600F7E8F7 /* CubeShader.metal in Sources */,
 				4A611923216F501000A2C194 /* FragmentShader.metal in Sources */,
 				4A611916216F154100A2C194 /* NavigationController.swift in Sources */,

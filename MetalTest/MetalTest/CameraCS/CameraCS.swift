@@ -13,10 +13,11 @@ import AVFoundation
 import MetalKit
 import MetalPerformanceShaders
 
-class CameraMPSViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class CameraCSViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     //[[ properties
     var device:MTLDevice!                     = nil
     var metalLayer:CAMetalLayer!              = nil
+    var pipelineState:MTLComputePipelineState! = nil
     var commandQueue:MTLCommandQueue!         = nil
     var timer:CADisplayLink!                  = nil
     
@@ -25,10 +26,7 @@ class CameraMPSViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     var captureOutput:AVCaptureVideoDataOutput!  = nil
     var texture:MTLTexture!                      = nil
     var processQueue:DispatchQueue!              = nil
-    
-    var isGray:Bool!                             = false
-    var isGrayBuffer: MTLBuffer!                 = nil
-    var blurStep: Float                          = 0
+    //]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +36,7 @@ class CameraMPSViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         
         initMTLDevice()
         initMTLLayer()
-        initBlurSlider()
+        initPipelineState()
         initCommandQueue()
         initCaptureSession()
         
@@ -65,16 +63,13 @@ class CameraMPSViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         self.view.frame.origin = viewOriginal
         self.view.frame.size   = viewSize
         
-        self.title = "渲染摄像头2"
+        self.title = "计算渲染摄像头"
         //self.navigationItem.leftBarButtonItem?.title = "返回"
         self.view.backgroundColor = UIColor.white
     }
     
     func initMTLDevice() {
         self.device = MTLCreateSystemDefaultDevice()
-        if !MPSSupportsMTLDevice(self.device) {
-            print("该设备不支持MetalPerformanceShaders!")
-        }
     }
     
     func initMTLLayer() {
@@ -89,23 +84,19 @@ class CameraMPSViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         drawableSize.width     *= self.view.contentScaleFactor
         drawableSize.height    *= self.view.contentScaleFactor
         metalLayer.drawableSize = drawableSize
+        metalLayer.borderWidth  = 1
         metalLayer.borderColor  = UIColor.red.cgColor
-        metalLayer.borderWidth  = 2.0
         self.view.layer.addSublayer(metalLayer)
     }
     
-    func initBlurSlider() {
-        let blurSlider = UISlider(frame: CGRect(origin: CGPoint(x: 50, y: 570), size: CGSize(width: 300, height: 20)))
-        blurSlider.minimumValue = 0.0
-        blurSlider.maximumValue = 50.0
-        blurSlider.value        = 5.0
-        blurSlider.isContinuous = true
-        blurSlider.addTarget(self, action: #selector(sliderChange(sender:)), for: .valueChanged)
-        self.view.addSubview(blurSlider)
-    }
-    
-    @objc func sliderChange(sender: UISlider) {
-        self.blurStep = sender.value
+    func initPipelineState() {
+        let defaultLibrary = self.device.makeDefaultLibrary()
+        let computeFunc     = defaultLibrary?.makeFunction(name: "ca_cs_compute")
+        do {
+            try self.pipelineState = self.device.makeComputePipelineState(function: computeFunc!)
+        } catch let e{
+            print("\(e)")
+        }
     }
     
     func initCommandQueue() {
@@ -117,11 +108,19 @@ class CameraMPSViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     }
     
     func render() {
+        // metal layer上调用nextDrawable() ，它会返回你需要绘制到屏幕上的纹理(texture)
         if let _ = self.texture {
             let drawable = metalLayer.nextDrawable()
             let commandBuffer = commandQueue.makeCommandBuffer()
-            let filter = MPSImageGaussianBlur(device: self.device, sigma: self.blurStep)
-            filter.encode(commandBuffer: commandBuffer!, sourceTexture: self.texture!, destinationTexture: (drawable?.texture)!)
+            let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
+            commandEncoder?.setComputePipelineState(self.pipelineState)
+            commandEncoder?.setTexture(drawable!.texture, index: 0)
+            commandEncoder?.setTexture((self.texture)!, index: 1)
+            let threadGroupSize = MTLSizeMake(8, 8, 1)
+            let threadGroups = MTLSizeMake(drawable!.texture.width / threadGroupSize.width, drawable!.texture.height / threadGroupSize.height, 1)
+            commandEncoder?.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupSize)
+            commandEncoder?.endEncoding()
+            
             commandBuffer?.present(drawable!)
             commandBuffer?.commit()
         }
@@ -152,7 +151,7 @@ class CameraMPSViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         self.captureOutput.setSampleBufferDelegate(self, queue: self.processQueue)
         
         self.captureSession.beginConfiguration()
-        self.captureSession.sessionPreset = .medium
+        self.captureSession.sessionPreset = .vga640x480
         self.captureSession.commitConfiguration()
         
         let connection = self.captureOutput.connection(with: .video)
@@ -181,6 +180,7 @@ class CameraMPSViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     func getImageData(sampleBuffer: CMSampleBuffer!)-> UIImage? {
         if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+            
             CVPixelBufferLockBaseAddress(imageBuffer,[])
             let baseAddress = CVPixelBufferGetBaseAddress(imageBuffer)
             let bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer)

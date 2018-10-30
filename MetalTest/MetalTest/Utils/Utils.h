@@ -13,7 +13,7 @@ float sum(float a, float b);
 float distance(float2 point, float2 center, float radius);
 float smootherstep(float e1, float e2, float x);
 float4 grayColor(float4 colorIn);
-
+float4 sobel(uint2 gid, int sobelStep, metal::texture2d<float, metal::access::read> src);
 struct VertexIn {
     float4 position [[position]];
     float4 color;
